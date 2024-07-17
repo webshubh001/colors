@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(
+          to right top,
+          #051937,
+          #004d7a,
+          #008793,
+          #00bf72,
+          #a8eb12
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #myBtn {
+        width: 90px;
+        height: 30px;
+        border-radius: 20px;
+        padding: 5px;
+        text-transform: uppercase;
+
+        background-color: rgb(5, 25, 55);
+        border: none;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
+          rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+          rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+      }
+      #myBtn2 {
+        width: 90px;
+        height: 30px;
+        border-radius: 20px;
+        padding: 5px;
+        text-transform: uppercase;
+        background-color: rgb(168, 235, 18);
+        border: none;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
+          rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+          rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+      }
+      .btn-div {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      h4 {
+        color: white;
+        margin: 1rem 0 0.5rem 5rem;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+      .copyCode {
+        background-color: rgb(235 230 230 / 20%);
+        width: 295px;
+        height: 70px;
+        border-radius: 10px;
+        padding: 14px;
+        border-left: 5px solid rgb(235 230 230 / 70%);
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      p {
+        margin: 0 auto 35px;
+        font-size: 1.5em;
+        text-align: center;
+        color: aliceblue;
+        font-family: "Roboto", sans-serif;
+        font-weight: 900;
+        font-style: normal;
+        filter: drop-shadow(5px 5px 15px black);
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <p>Gradient Color Generator</p>
+      <div class="btn-div">
+        <button id="myBtn">#051937</button>
+        <button id="myBtn2">#008793</button>
+      </div>
+      <h4>Copy your code here</h4>
+      <div class="copyCode">
+        background-image: linear-gradient(to
+        right,rgb(92,145,229),rgb(152,63,198))
+      </div>
+    </section>
+    <script>
+      let myBtn = document.getElementById("myBtn");
+      let myBtn2 = document.getElementById("myBtn2");
+      let copyCode = document.querySelector(".copyCode");
+      let hexValue = "0a1b2c34d56e78f9";
+      let value = "#004773";
+      let value2 = "#54d542";
+
+      const hexFunction = () => {
+        let colors = "#";
+        for (i = 0; i < 6; i++) {
+          colors = colors + hexValue[Math.floor(Math.random() * 16)];
+        }
+        return colors;
+      };
+      const handleButton1 = () => {
+        value = hexFunction();
+        // console.log(value);
+        myBtn.innerHTML = value;
+        document.body.style.backgroundImage = `linear-gradient(to right,${value},${value2}`;
+        copyCode.innerHTML = `background-image: linear-gradient(to
+        right,${value},${value2})`;
+      };
+      const handleButton2 = () => {
+        value2 = hexFunction();
+        // console.log(value2);
+        myBtn2.innerHTML = value2;
+        document.body.style.backgroundImage = `linear-gradient(to right,${value},${value2}`;
+        copyCode.innerHTML = `background-image: linear-gradient(to
+        right,${value},${value2})`;
+      };
+
+      myBtn.addEventListener("click", handleButton1);
+      myBtn2.addEventListener("click", handleButton2);
+
+      copyCode.addEventListener("click", () => {
+        navigator.clipboard.writeText(copyCode.innerText);
+        window.alert("Text Copied !");
+      });
+    </script>
+  </body>
+</html>
